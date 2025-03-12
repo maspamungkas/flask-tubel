@@ -1,6 +1,7 @@
 Flask
 pandas
 numpy
+sklearn
 xgboost
 werkzeug
 gunicorn
