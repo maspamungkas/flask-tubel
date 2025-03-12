@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediksi Keterlambatan Tugas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Prediksi Keterlambatan Tugas</h2>
+
+    <!-- Upload File -->
+    <h4>Upload File CSV</h4>
+    <form id="upload-form" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="file" class="form-label">Pilih File:</label>
+        <input type="file" id="file" name="file" class="form-control" accept=".csv" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Unggah & Prediksi</button>
+    </form>
+    <!-- Hasil Prediksi untuk Upload File -->
+    <div id="result-upload" class="mt-4" style="display: none;">
+      <h3>Hasil Prediksi (Upload File):</h3>
+      <a id="download-link" class="btn btn-success" href="#" target="_blank">Unduh Hasil</a>
+    </div>
+
+    <hr>
+
+    <!-- Input Manual -->
+    <h4 class="mt-5">Input Manual</h4>
+    <form id="manual-form">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="Strata">Strata:</label>
+          <select id="Strata" name="Strata" class="form-control">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="tahun_intake">Tahun Intake:</label>
+          <input type="number" id="tahun_intake" name="tahun_intake" class="form-control" min="2004" max="2026" required>
+        </div>
+        <div class="col-md-4">
+          <label for="Umur_intake">Umur Intake:</label>
+          <input type="number" id="Umur_intake" name="Umur_intake" class="form-control" min="20" max="55" required>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <label for="Lama_Bekerja">Lama Bekerja:</label>
+          <input type="number" id="Lama_Bekerja" name="Lama_Bekerja" class="form-control" min="1" max="30" required>
+        </div>
+        <div class="col-md-4">
+          <label for="jenis_kelamin">Jenis Kelamin:</label>
+          <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="kluster">Kluster:</label>
+          <select id="kluster" name="kluster" class="form-control">
+            <option>Akuntansi</option>
+            <option>Ekonomi, Ilmu Ekonomi, dan Ekonomi Terapan</option>
+            <option>Hukum</option>
+            <option>Ilmu Administrasi, Administrasi Pembangunan dan Bisnis</option>
+            <option>Kebijakan Publik</option>
+            <option>Lainnya</option>
+            <option>Manajemen, Ilmu Manajemen dan Manajemen Terapan</option>
+            <option>SDM, Psikolog, Kepemimpinan dan Komunikasi</option>
+            <option>Studi Pembangunan, Ilmu Pembangunan</option>
+            <option>TI dan Komputer</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <label for="univ">Universitas:</label>
+          <select id="univ" name="univ" class="form-control">
+            <option>AUS</option>
+            <option>indo lainnya</option>
+            <option>IPB</option>
+            <option>ITB</option>
+            <option>ITS</option>
+            <option>JPN</option>
+            <option>lainnya</option>
+            <option>Linkage</option>
+            <option>PKN STAN</option>
+            <option>UB</option>
+            <option>UGM</option>
+            <option>UI</option>
+            <option>UNAIR</option>
+            <option>UNAND</option>
+            <option>UNDIP</option>
+            <option>UNHAN</option>
+            <option>UNHAS</option>
+            <option>UNILA</option>
+            <option>univUK</option>
+            <option>UNPAD</option>
+            <option>UNS</option>
+            <option>UNSRI</option>
+            <option>UNSUD</option>
+            <option>USA</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="Beasiswa">Beasiswa:</label>
+          <select id="Beasiswa" name="Beasiswa" class="form-control">
+            <option>AAS</option>
+            <option>DIPA BPKP</option>
+            <option>Kementerian Keuangan RI</option>
+            <option>Kementerian Komunikasi dan Informatika RI</option>
+            <option>Kementerian Pertahanan RI</option>
+            <option>KOICA</option>
+            <option>Lainnya</option>
+            <option>LPDP</option>
+            <option>LPPNTB</option>
+            <option>New Zealand Aid Programmed Scholarship</option>
+            <option>Pusbindiklatren Bappenas</option>
+            <option>SPIRIT</option>
+            <option>STAR</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="Jabatan">Jabatan:</label>
+          <select id="Jabatan" name="Jabatan" class="form-control">
+            <option>JFU</option>
+            <option>Sert.Aud.Muda</option>
+            <option>Sert.Aud.Pelaksana</option>
+            <option>Sert.Aud.Pertama</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <label for="StatusNikah">Status Nikah:</label>
+          <select id="StatusNikah" name="StatusNikah" class="form-control">
+            <option>lajang</option>
+            <option>pasangan BPKP</option>
+            <option>pasangan NonBPKP</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="KampusDomisili">Kampus Domisili:</label>
+          <select id="KampusDomisili" name="KampusDomisili" class="form-control">
+            <option>domisili</option>
+            <option>tidak domisili</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mt-3">Prediksi</button>
+    </form>
+    <!-- Hasil Prediksi untuk Input Manual -->
+    <div id="result-manual" class="mt-4" style="display: none;">
+      <h3>Hasil Prediksi (Input Manual):</h3>
+      <p id="prediction-output"></p>
+    </div>
+  </div>
+
+  <script>
+    // Event handler untuk form input manual
+    document.getElementById('manual-form').addEventListener('submit', async function(event) {
+      event.preventDefault();  // Mencegah refresh halaman saat submit
+
+      // Ambil data input dari form
+      let formData = new FormData(this);
+      let jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      // Kirim data ke Flask dengan fetch
+      let response = await fetch('/predict_manual', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+      });
+
+      let result = await response.json();
+
+      // Tampilkan hasil prediksi untuk input manual
+      if (result.result !== undefined) {
+        document.getElementById('prediction-output').innerText =
+          "Hasil Prediksi: " + (result.result === 1 ? "Terlambat" : "Ontime");
+        document.getElementById('result-manual').style.display = 'block';
+      } else {
+        alert("Terjadi kesalahan: " + (result.error || "Tidak diketahui"));
+      }
+    });
+
+    // Event handler untuk form upload file
+    document.getElementById('upload-form').addEventListener('submit', async function(event) {
+      event.preventDefault();  // Mencegah refresh halaman saat submit
+
+      let formData = new FormData(this);
+
+      // Kirim file ke Flask endpoint /predict
+      let response = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      let result = await response.json();
+
+      // Tampilkan link download jika berhasil
+      if (result.message && result.download_link) {
+        document.getElementById('download-link').href = result.download_link;
+        document.getElementById('result-upload').style.display = 'block';
+      } else if (result.error) {
+        alert("Terjadi kesalahan: " + result.error);
+      }
+    });
+  </script>
+</body>
+</html>
